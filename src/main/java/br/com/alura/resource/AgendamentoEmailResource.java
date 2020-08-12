@@ -1,4 +1,4 @@
-package br.com.alura;
+package br.com.alura.resource;
 
 import java.util.List;
 
@@ -10,6 +10,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import br.com.alura.business.AgendamentoEmailBusiness;
+import br.com.alura.entity.AgendamentoEmail;
 
 @Path("/agendamentoemail")
 public class AgendamentoEmailResource {
@@ -19,7 +20,7 @@ public class AgendamentoEmailResource {
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response listarAgendamentoEmail() {
-		List<String> emails = agendamentoEmailBusiness.listarAgendamentoEmail();
+		List<AgendamentoEmail> emails = agendamentoEmailBusiness.listarAgendamentoEmail();
 		return Response.ok(emails).build();
 	}
 }

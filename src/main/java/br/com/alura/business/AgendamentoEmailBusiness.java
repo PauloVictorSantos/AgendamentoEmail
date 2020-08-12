@@ -4,13 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.Stateless;
+import javax.inject.Inject;
+
+import br.com.alura.dao.AgendamentoEmailDao;
+import br.com.alura.entity.AgendamentoEmail;
 
 @Stateless
 public class AgendamentoEmailBusiness {
-	public List<String> listarAgendamentoEmail(){
-		List<String>  emails  = new ArrayList<>();
-		emails.add("paulovictor494@gmail.com");
-		emails.add("paulovictor494@gmail.com");
-		return emails;
+	
+	@Inject
+	private AgendamentoEmailDao agendamentoEmailDao;
+	
+	public List<AgendamentoEmail> listarAgendamentoEmail(){
+		return agendamentoEmailDao.listarAgendamentoEmail();
 	}
 }

@@ -17,4 +17,8 @@ public class AgendamentoEmailDao {
 	public List<AgendamentoEmail> listarAgendamentoEmail(){
 		return entityManager.createQuery("select a from AgendamentoEmail", AgendamentoEmail.class).getResultList();
 	}
+	
+	public void salvarAgendamentoEmail(AgendamentoEmail agendamentoEmail) {
+		entityManager.persist(agendamentoEmail);
+	}
 }

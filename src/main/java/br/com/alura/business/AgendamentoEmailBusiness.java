@@ -1,6 +1,5 @@
 package br.com.alura.business;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -17,5 +16,10 @@ public class AgendamentoEmailBusiness {
 	
 	public List<AgendamentoEmail> listarAgendamentoEmail(){
 		return agendamentoEmailDao.listarAgendamentoEmail();
+	}
+	
+	public void salvarAgendamentoEmail(AgendamentoEmail agendamentoEmail) {
+		agendamentoEmail.setEnviado(false);
+		agendamentoEmailDao.salvarAgendamentoEmail(agendamentoEmail);
 	}
 }

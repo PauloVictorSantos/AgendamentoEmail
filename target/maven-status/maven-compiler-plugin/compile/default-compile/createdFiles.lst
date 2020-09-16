@@ -1,0 +1,7 @@
+br\com\alura\dto\MensagemErroDto.class
+br\com\alura\business\AgendamentoEmailBusiness.class
+br\com\alura\entity\AgendamentoEmail.class
+br\com\alura\resource\AgendamentoEmailResource.class
+br\com\alura\JAXRSConfiguration.class
+br\com\alura\ConstraintValidationMapper.class
+br\com\alura\dao\AgendamentoEmailDao.class

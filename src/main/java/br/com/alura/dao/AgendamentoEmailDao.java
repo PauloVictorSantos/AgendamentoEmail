@@ -24,9 +24,17 @@ public class AgendamentoEmailDao {
 	}
 	
 	public List<AgendamentoEmail> listarAgendamentosEmailPorEmail(String email){
-		Query query = entityManager.createQuery(
-				"select a from AgendamentoEmail a where a.email =:email and a.enviado =false", AgendamentoEmail.class);
+		Query query = entityManager.createQuery("select a from AgendamentoEmail a where a.email =:email and a.enviado =false", AgendamentoEmail.class);
 		query.setParameter("email", email);
 		return query.getResultList();
+	}
+	
+	public List<AgendamentoEmail> listarAgendamentosNaoenviados(){
+		Query query = entityManager.createQuery("select a from AgendamentoEmail a where a.enviado =false", AgendamentoEmail.class);
+		return query.getResultList();
+	}
+	
+	public void atualizarAgendamentoEmail(AgendamentoEmail agendamentoEmail) {
+		entityManager.merge(agendamentoEmail);
 	}
 }

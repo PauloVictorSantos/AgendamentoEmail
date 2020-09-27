@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import javax.annotation.Resource;
+import javax.ejb.ApplicationException;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Session;
@@ -13,6 +14,7 @@ import javax.mail.internet.MimeMessage;
 
 import br.com.alura.entity.AgendamentoEmail;
 
+@ApplicationException(rollback = true)
 public class BusinessException extends Exception{
 	/**
 	 * 

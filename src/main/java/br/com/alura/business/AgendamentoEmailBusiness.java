@@ -5,6 +5,10 @@ import java.util.Optional;
 
 import javax.annotation.Resource;
 import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
+import javax.ejb.TransactionManagement;
+import javax.ejb.TransactionManagementType;
 import javax.inject.Inject;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -20,6 +24,7 @@ import br.com.alura.interception.Logger;
 
 @Stateless
 @Logger
+@TransactionManagement(TransactionManagementType.CONTAINER)
 public class AgendamentoEmailBusiness {
 	
 	@Inject
@@ -35,12 +40,14 @@ public class AgendamentoEmailBusiness {
 		return agendamentoEmailDao.listarAgendamentoEmail();
 	}
 	
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public void salvarAgendamentoEmail(@Valid AgendamentoEmail agendamentoEmail) throws BusinessException {
 		if(!agendamentoEmailDao.listarAgendamentosEmailPorEmail(agendamentoEmail.getEmail()).isEmpty()) {
 			throw new BusinessException("Email já está agendamento.");
 		}
 		agendamentoEmail.setEnviado(false);
 		agendamentoEmailDao.salvarAgendamentoEmail(agendamentoEmail);
+		
 	}
 	
 	public void marcarEnviadas(AgendamentoEmail agendamentoEmail) {
@@ -49,9 +56,9 @@ public class AgendamentoEmailBusiness {
 	}
 	
 	public List<AgendamentoEmail> listarAgendamentosNaoenviados(){
-		return agendamentoEmailDao.listarAgendamentoEmail();
-		
+		return agendamentoEmailDao.listarAgendamentosNaoenviados();
 	}
+	
 	public void enviarEmail(AgendamentoEmail agendamentoEmail) {
 		try {
 		    MimeMessage mensagem = new MimeMessage(sessaoEmail);
